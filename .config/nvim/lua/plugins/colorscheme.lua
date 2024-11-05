@@ -7,12 +7,6 @@ return {
   },
 
   {
-    "folke/tokyonight.nvim",
-    lazy = true,
-    opts = { style = "storm" },
-  },
-
-  {
     "catppuccin/nvim",
     lazy = true,
     name = "catppuccin",
@@ -42,7 +36,6 @@ return {
             information = { "undercurl" },
           },
         },
-        navic = { enabled = true, custom_bg = "lualine" },
         neotest = true,
         neotree = true,
         noice = true,

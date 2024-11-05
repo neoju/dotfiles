@@ -11,5 +11,3 @@ opt.number = true
 opt.relativenumber = true -- Relative line numbers
 opt.title = true
 opt.titlestring = "%{expand('%:p:h:h:t')} - %{expand('%:p:h:t')}"
-
-vim.g.lazyvim_picker = "telescope"
