@@ -26,7 +26,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.vue" },
     { import = "lazyvim.plugins.extras.lang.php" },
     { import = "lazyvim.plugins.extras.lang.go" },
-
+    { import = "lazyvim.plugins.extras.ui.edgy" },
     { import = "lazyvim.plugins.extras.coding.copilot-chat" },
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
 

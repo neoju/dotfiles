@@ -113,6 +113,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias cls='clear'
+alias c='clear'
+alias v='nvim .'
 
 # fnm
 eval "$(fnm env --use-on-cd)"
@@ -138,3 +144,6 @@ myip ()
 }
 # pyenv
 eval "$(pyenv init -)"
+
+#bob
+export PATH="/Users/neo/.local/share/bob/nvim-bin:$PATH"
