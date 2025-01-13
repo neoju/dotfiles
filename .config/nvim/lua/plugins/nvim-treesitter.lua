@@ -1,11 +1,5 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {
-    {
-      "nvim-treesitter/nvim-treesitter-context", -- Show code context
-      opts = { enable = true, mode = "topline", line_numbers = true },
-    },
-  },
 
   opts = {
     ensure_installed = {
@@ -21,6 +15,7 @@ return {
       "tsx",
       "sql",
       "vue",
+      "prisma",
 
       "json",
       "yaml",
@@ -30,6 +25,7 @@ return {
       "html",
       "css",
       "scss",
+      "zig",
     },
   },
 }

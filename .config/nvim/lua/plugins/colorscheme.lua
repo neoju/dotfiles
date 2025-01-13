@@ -5,7 +5,6 @@ return {
       colorscheme = "catppuccin",
     },
   },
-
   {
     "catppuccin/nvim",
     lazy = true,
