@@ -5,21 +5,21 @@
 
 cask_args appdir: "/Applications", require_sha: true
 
+tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 
-brew "awscli"
-brew "fzf"
-brew "gh"
+# Essential
 brew "git"
-brew "go"
 brew "jump"
-brew "neovim"
-brew "node"
 brew "yadm"
 brew "zsh"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "font-hack-nerd-font"
 
-cask "wezterm"
-cash "karabiner-elements"
+# Neovim
+brew "bob"
+brew "fzf"
+brew "lazygit"
+cask "ghostty"
+
