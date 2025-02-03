@@ -23,8 +23,7 @@ return {
         map('gr', vim.lsp.buf.references, 'Goto References')
         map('gI', vim.lsp.buf.implementation, 'Goto Implementation')
         map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
-        map('<leader>D', vim.lsp.buf.type_definition, 'Type Definition')
-        map('<leader>rn', vim.lsp.buf.rename, 'Rename')
+        map('<leader>cr', vim.lsp.buf.rename, 'Rename')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 

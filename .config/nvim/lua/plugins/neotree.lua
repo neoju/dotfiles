@@ -32,6 +32,9 @@ return {
       enable_git_status = true,
       open_files_do_not_replace_types = { 'terminal', 'trouble' },
       use_libuv_file_watcher = true,
+      follow_current_file = {
+        enable = true,
+      },
 
       commands = {
         -- create a new neo-tree command
@@ -43,7 +46,6 @@ return {
             paths = node.type == 'directory' and vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ':p'))
               or vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ':h')),
           }
-          print('🚀 -> neotree.lua:41 -> paths: ' .. vim.inspect(prefills.paths))
           open_grug_far(prefills)
         end,
         -- https://github.com/nvim-neo-tree/neo-tree.nvim/blob/fbb631e818f48591d0c3a590817003d36d0de691/doc/neo-tree.txt#L535
@@ -65,7 +67,7 @@ return {
         width = 30,
         mappings = {
           ['<space>'] = 'none',
-          z = 'grug_far_replace',
+          ['/'] = 'grug_far_replace',
         },
       },
 
