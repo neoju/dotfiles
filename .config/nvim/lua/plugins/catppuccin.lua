@@ -29,7 +29,7 @@ return {
         strings = {},
         variables = {},
         numbers = {},
-        booleans = {},
+        booleans = { 'bold' },
         properties = {},
         types = {},
         operators = {},
@@ -48,7 +48,7 @@ return {
           enabled = true,
           indentscope_color = '',
         },
-        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        -- For more plugins integrations please scroll down ()
       },
     }
 

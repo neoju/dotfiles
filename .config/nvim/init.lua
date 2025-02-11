@@ -42,5 +42,9 @@ require('lazy').setup {
   require 'plugins.typescript-tools',
   require 'plugins.trouble',
 
+  -- langs
+  require 'plugins.go',
+  require 'plugins.rust',
+
   require 'plugins.misc',
 }

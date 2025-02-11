@@ -2,11 +2,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Disable the spacebar key's default behavior in Normal and Visual modes
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
 -- For conciseness
 local map = vim.keymap.set
+
+-- Disable the spacebar key's default behavior in Normal and Visual modes
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
 map('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window', remap = true })
