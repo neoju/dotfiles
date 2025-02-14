@@ -32,9 +32,6 @@ return {
       enable_git_status = true,
       open_files_do_not_replace_types = { 'terminal', 'trouble' },
       use_libuv_file_watcher = true,
-      follow_current_file = {
-        enable = true,
-      },
 
       commands = {
         -- create a new neo-tree command
@@ -85,6 +82,11 @@ return {
             '.python-version',
             '.venv',
           },
+        },
+        follow_current_file = {
+          enabled = true, -- This will find and focus the file in the active buffer every time
+          --               -- the current file is changed while the tree is open.
+          leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
       },
 
