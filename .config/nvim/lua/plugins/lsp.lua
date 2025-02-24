@@ -7,7 +7,7 @@ return {
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',       opts = {} },
     'saghen/blink.cmp',
   },
   config = function()
@@ -83,17 +83,12 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
     local servers = {
-      gopls = {},
-      ruff = {},
       html = { filetypes = { 'html', 'twig', 'hbs' } },
-      cssls = {},
-      tailwindcss = {},
-      dockerls = {},
-      sqlls = {},
-      terraformls = {},
-      jsonls = {},
-      yamlls = {},
-      volar = {},
+
+      tailwindcss = {
+        filetypes = { 'vue', 'typescriptreact', 'javascriptreact' }
+      },
+
       eslint = {
         settings = {
           -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
@@ -118,7 +113,7 @@ return {
             },
             diagnostics = { disable = { 'missing-fields' } },
             format = {
-              enable = false,
+              enable = true,
             },
           },
         },
@@ -138,26 +133,19 @@ return {
         function(server_name)
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-
-          if server_name == 'eslint' then
-            server.flags = { debounce_text_changes = 500 }
-            server.on_attach = function(client, bufnr)
-              client.server_capabilities.documentFormattingProvider = true
-              local au_lsp = vim.api.nvim_create_augroup('eslint_lsp', { clear = true })
-
-              vim.api.nvim_create_autocmd('BufWritePre', {
-                group = au_lsp,
-                buffer = bufnr,
-                callback = function()
-                  vim.lsp.buf.format { async = false }
-                end,
-              })
-            end
-          end
-
           require('lspconfig')[server_name].setup(server)
         end,
       },
     }
+
+    vim.lsp.handlers["client/registerCapability"] = function(err, result, ctx)
+      -- Check if it’s eslint and the specific workspace folder capability
+      if ctx.client_id and vim.lsp.get_client_by_id(ctx.client_id).name == "eslint" and
+          result and result.method == "workspace/didChangeWorkspaceFolders" then
+        return nil -- Silently ignore
+      end
+      -- Let NeoVim handle it naturally without forcing a callback
+      return vim.lsp.protocol.make_client_capabilities()
+    end
   end,
 }

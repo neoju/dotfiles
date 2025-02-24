@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-      { out, 'WarningMsg' },
+      { out,                            'WarningMsg' },
       { '\nPress any key to exit...' },
     }, true, {})
     vim.fn.getchar()
@@ -26,7 +26,6 @@ require 'core.snippets'
 require('lazy').setup {
   require 'plugins.neotree',
   require 'plugins.treesitter',
-  require 'plugins.none-ls',
   require 'plugins.lazygit',
   require 'plugins.catppuccin',
   require 'plugins.blink-cmp',
@@ -41,6 +40,7 @@ require('lazy').setup {
   require 'plugins.fzf',
   require 'plugins.typescript-tools',
   require 'plugins.trouble',
+  require 'plugins.flash',
 
   -- langs
   require 'plugins.go',

@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- go to last loc when opening a buffer
+-- Go to last loc when opening a buffer
 vim.api.nvim_create_autocmd('BufReadPost', {
   group = augroup 'last_loc',
   callback = function(event)
@@ -70,22 +70,47 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
--- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  group = augroup 'auto_create_dir',
-  callback = function(event)
-    if event.match:match '^%w%w+:[\\/][\\/]' then
-      return
-    end
-    local file = vim.uv.fs_realpath(event.match) or event.match
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
-  end,
-})
-
 -- Read volt files as php
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = { '*.volt' },
   callback = function()
     vim.bo.filetype = 'html'
+  end,
+})
+
+-- Auto format on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  callback = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
+    local has_eslint = false
+    local has_typescript_tools = false
+
+    -- Check which LSPs are attached
+    for _, client in ipairs(clients) do
+      if client.name == "eslint" then
+        has_eslint = true
+      elseif client.name == "typescript-tools" then -- typescript-tools uses typescript-tools
+        has_typescript_tools = true
+      end
+    end
+
+    -- Formatting logic
+    if has_eslint then
+      -- ESLint takes priority, format with EslintFixAll
+      vim.cmd("EslintFixAll")
+    elseif has_typescript_tools then
+      -- No ESLint, let typescript-tools format
+      vim.lsp.buf.format({
+        bufnr = bufnr,
+        filter = function(client)
+          return client.name == "typescript-tools"
+        end
+      })
+    else
+      -- Fall back to default formatter
+      vim.lsp.buf.format()
+    end
   end,
 })

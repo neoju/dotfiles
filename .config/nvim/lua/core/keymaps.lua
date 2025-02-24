@@ -51,7 +51,8 @@ map('n', '<leader>ui', vim.show_pos, { desc = 'Inspect Pos' })
 map('n', '<leader>uI', '<cmd>InspectTree<cr>', { desc = 'Inspect Tree' })
 
 -- search and replace in current file
-map('n', '<leader>sr', ':lua require(\'grug-far\').open({ prefills = { paths = vim.fn.expand("%") } })<CR>', { desc = 'Search and Replace' })
+map('n', '<leader>sr', ':lua require(\'grug-far\').open({ prefills = { paths = vim.fn.expand("%") } })<CR>',
+  { desc = 'Search and Replace' })
 map(
   'v',
   '<leader>sr',
@@ -79,7 +80,18 @@ map('n', '<leader>wd', '<cmd>close<cr>', { desc = 'Close Window' })
 
 -- Set a custom keymap to update the window title
 map('n', '<leader>wt', function()
-  local title = vim.fn.input 'Enter window title: '
-  vim.cmd('set titlestring=' .. title:gsub('%s+', '-'))
-  vim.cmd 'set title'
+  -- Set a buffer-local flag to disable blink.cmp completionsv
+  vim.b.blink_cmp_disabled = true
+
+  -- Prompt for title without blink.cmp interfering
+  local title = vim.fn.input('Enter window title: ')
+
+  -- Re-enable blink.cmp by clearing the flag
+  vim.b.blink_cmp_disabled = nil
+
+  -- Set the title, replacing spaces with hyphens
+  if title and title ~= "" then
+    vim.cmd('set titlestring=' .. title:gsub('%s+', '-'))
+    vim.cmd('set title')
+  end
 end, { desc = 'Set Window Title' })

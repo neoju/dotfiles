@@ -41,7 +41,7 @@ return {
             -- also escape the paths if space is there
             -- if you want files to be selected, use ':p' only, see filename-modifiers
             paths = node.type == 'directory' and vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ':p'))
-              or vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ':h')),
+                or vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ':h')),
           }
           open_grug_far(prefills)
         end,
@@ -52,7 +52,7 @@ return {
             -- also escape the paths if space is there
             -- if you want files to be selected, use ':p' only, see filename-modifiers
             local path = node.type == 'directory' and vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ':p'))
-              or vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ':h'))
+                or vim.fn.fnameescape(vim.fn.fnamemodify(node:get_id(), ':h'))
             table.insert(paths, path)
           end
           local prefills = { paths = table.concat(paths, '\n') }
@@ -84,7 +84,7 @@ return {
           },
         },
         follow_current_file = {
-          enabled = true, -- This will find and focus the file in the active buffer every time
+          enabled = true,          -- This will find and focus the file in the active buffer every time
           --               -- the current file is changed while the tree is open.
           leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },

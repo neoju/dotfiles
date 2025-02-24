@@ -46,4 +46,12 @@ return {
       }
     end,
   },
+  {
+    'brenoprata10/nvim-highlight-colors',
+    opts = {
+      ---Render style
+      ---@usage 'background'|'foreground'|'virtual'
+      render = 'background',
+    }
+  }
 }
