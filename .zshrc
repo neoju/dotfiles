@@ -118,7 +118,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias cls='clear'
 alias c='clear'
-alias v='nvim .'
+alias v='ESLINT_USE_FLAT_CONFIG=false nvim .'
 
 # fnm
 eval "$(fnm env --use-on-cd)"
