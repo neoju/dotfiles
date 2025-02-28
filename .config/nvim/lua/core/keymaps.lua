@@ -80,14 +80,8 @@ map('n', '<leader>wd', '<cmd>close<cr>', { desc = 'Close Window' })
 
 -- Set a custom keymap to update the window title
 map('n', '<leader>wt', function()
-  -- Set a buffer-local flag to disable blink.cmp completionsv
-  vim.b.blink_cmp_disabled = true
-
   -- Prompt for title without blink.cmp interfering
   local title = vim.fn.input('Enter window title: ')
-
-  -- Re-enable blink.cmp by clearing the flag
-  vim.b.blink_cmp_disabled = nil
 
   -- Set the title, replacing spaces with hyphens
   if title and title ~= "" then

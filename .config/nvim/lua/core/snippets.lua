@@ -87,30 +87,32 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     local has_eslint = false
     local has_typescript_tools = false
 
-    -- Check which LSPs are attached
+
     for _, client in ipairs(clients) do
       if client.name == "eslint" then
         has_eslint = true
-      elseif client.name == "typescript-tools" then -- typescript-tools uses typescript-tools
+      elseif client.name == "typescript-tools" then
         has_typescript_tools = true
       end
     end
 
-    -- Formatting logic
-    if has_eslint then
-      -- ESLint takes priority, format with EslintFixAll
-      vim.cmd("EslintFixAll")
-    elseif has_typescript_tools then
-      -- No ESLint, let typescript-tools format
-      vim.lsp.buf.format({
-        bufnr = bufnr,
-        filter = function(client)
-          return client.name == "typescript-tools"
-        end
-      })
-    else
-      -- Fall back to default formatter
-      vim.lsp.buf.format()
-    end
+    vim.lsp.buf.format()
+
+    -- -- Formatting logic
+    -- if has_eslint then
+    --   -- ESLint takes priority, format with EslintFixAll
+    --   vim.cmd("EslintFixAll")
+    -- elseif has_typescript_tools then
+    --   -- No ESLint, let typescript-tools format
+    --   vim.lsp.buf.format({
+    --     bufnr = bufnr,
+    --     filter = function(client)
+    --       return client.name == "typescript-tools"
+    --     end
+    --   })
+    -- else
+    --   -- Fall back to default formatter
+    --   vim.lsp.buf.format()
+    -- end
   end,
 })

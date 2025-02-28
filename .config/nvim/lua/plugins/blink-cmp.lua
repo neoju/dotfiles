@@ -18,8 +18,19 @@ return {
   ---@type blink.cmp.Config
   opts = {
     completion = {
+      accept = {
+        auto_brackets = {
+          enabled = true,
+        },
+      },
+
       menu = {
         draw = {
+          columns = {
+            { 'kind_icon', 'label', gap = 1 },
+            { 'kind' },
+          },
+
           components = {
             -- customize the drawing of kind icons
             kind_icon = {
@@ -52,11 +63,17 @@ return {
             },
           },
         },
+        auto_show = function(ctx)
+          if ctx.mode == 'cmdline' then
+            return false
+          end
+
+          return not vim.tbl_contains({}, vim.bo.filetype)
+              and vim.bo.buftype ~= "prompt"
+              and vim.b.completion ~= false
+        end
       },
     },
-    enabled = function()
-      return not vim.b.blink_cmp_disabled
-    end,
     -- 'default' for mappings similar to built-in completion
     -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
     -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
@@ -137,6 +154,26 @@ return {
         --     return items
         --   end,
         -- },
+
+        -- Path completion from cwd instead of current buffer's directory
+        path = {
+          opts = {
+            get_cwd = function(_)
+              return vim.fn.getcwd()
+            end,
+          },
+          min_keyword_length = 0,
+        },
+        lsp = {
+          min_keyword_length = 0, -- Number of characters to trigger porvider
+          score_offset = 0,       -- Boost/penalize the score of the items
+        },
+        snippets = {
+          min_keyword_length = 1,
+        },
+        buffer = {
+          min_keyword_length = 0,
+        },
       },
     },
   },

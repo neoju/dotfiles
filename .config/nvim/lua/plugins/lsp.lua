@@ -83,6 +83,12 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
 
     local servers = {
+      prettierd = {
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+      },
+
+      volar = { 'vue' },
+
       html = { filetypes = { 'html', 'twig', 'hbs' } },
 
       tailwindcss = {
@@ -94,7 +100,12 @@ return {
           -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
           workingDirectories = { mode = 'auto' },
           format = true,
+          codeAction = {
+            disableRuleComment = { enable = true },
+            showDocumentation = { enable = true },
+          },
         },
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
       },
 
       lua_ls = {
