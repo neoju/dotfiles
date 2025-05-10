@@ -1,57 +1,54 @@
 return {
   {
-    -- Autoclose parentheses, brackets, quotes, etc.
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = true,
-    opts = {},
-  },
-  {
-    -- Detect tabstop and shiftwidth automatically
-    'tpope/vim-sleuth',
-  },
-  {
-    -- Highlight todo, notes, etc in comments
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-  },
-  {
-    -- High-performance color highlighter
-    'norcalli/nvim-colorizer.lua',
-    opts = {},
-  },
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    opts = {},
-  },
-  {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
+    "brenoprata10/nvim-highlight-colors",
     opts = {
-      preset = 'helix',
+      render = "virtual",
+      virtual_symbol = "",
     },
   },
   {
-    'numToStr/Comment.nvim',
+    "sphamba/smear-cursor.nvim",
+    opts = {
+      cursor_color = "#ff8800",
+      stiffness = 0.3,
+      trailing_stiffness = 0.1,
+      trailing_exponent = 5,
+      never_draw_over_target = true,
+      hide_target_hack = true,
+      gamma = 1,
+      legacy_computing_symbols_support = true,
+      smear_terminal_mode = true,
+      time_interval = 10,
+    },
+  },
+
+  -- Decorate scrollbar.
+  {
+    "lewis6991/satellite.nvim",
     opts = {},
   },
+  -- Smooth scrolling for any movement command.
   {
-    'MagicDuck/grug-far.nvim',
-    config = function()
-      require('grug-far').setup {
-        -- engine = 'ripgrep' is default, but 'astgrep' can be specified
-      }
-    end,
+    "declancm/cinnamon.nvim",
+    version = "*", -- use latest release
+    opts = {},
+  },
+  -- Automatically exit Insert mode after inactivity.
+  {
+    "csessh/stopinsert.nvim",
+    opts = {},
+  },
+  -- Plugin that adds a 'cut' operation separate from 'delete'.
+  {
+    "gbprod/cutlass.nvim",
+    opts = {
+      cut_key = "x",
+    },
   },
   {
-    'brenoprata10/nvim-highlight-colors',
-    opts = {
-      ---Render style
-      ---@usage 'background'|'foreground'|'virtual'
-      render = 'background',
-    }
-  }
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      table.insert(opts.sections.lualine_x, "overseer")
+    end,
+  },
 }
