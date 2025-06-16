@@ -1,3 +1,5 @@
+local leet_arg = "leetcode"
+
 return {
   "kawre/leetcode.nvim",
   build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
@@ -12,5 +14,6 @@ return {
     arg = leet_arg,
 
     lang = "go",
+    logging = true,
   },
 }

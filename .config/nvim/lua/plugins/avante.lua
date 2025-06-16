@@ -3,20 +3,16 @@ return {
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   opts = {
-    provider = "claude",
-    cursor_applying_provider = "groq", -- In this example, use Groq for applying, but you can also use any provider you want.
-    behaviour = {
-      --- ... existing behaviours
-      enable_cursor_planning_mode = true, -- enable cursor planning mode!
-    },
-    vendors = {
-      --- ... existing vendors
-      groq = { -- define groq provider
-        __inherited_from = "openai",
-        api_key_name = "GROQ_API_KEY",
-        endpoint = "https://api.groq.com/openai/v1/",
-        model = "llama-3.3-70b-versatile",
-        max_completion_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
+    -- add any opts here
+    -- for example
+    provider = "copilot",
+
+    input = {
+      provider = "snacks",
+      provider_opts = {
+        -- Additional snacks.input options
+        title = "Avante Input",
+        icon = " ",
       },
     },
   },
@@ -25,11 +21,11 @@ return {
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
-    "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
+    "folke/snacks.nvim", -- for input provider snacks
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
     "zbirenbaum/copilot.lua", -- for providers='copilot'
     {

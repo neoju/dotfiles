@@ -32,3 +32,7 @@ map("n", "<leader>wt", function()
     vim.cmd("set title")
   end
 end, { desc = "Set Window Title" })
+
+-- Key map to open codeium chat
+-- Prefix 'a' for AI
+map("n", "<leader>ac", "<cmd>Codeium Chat<CR>", { desc = "Open Codeium Chat" })

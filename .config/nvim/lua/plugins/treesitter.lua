@@ -33,7 +33,10 @@ return { -- Highlight, edit, and navigate code
       "bash",
       "tsx",
       "css",
+      "scss",
+      "rust",
       "html",
+      "vue",
       "latex",
     },
     -- Autoinstall languages that are not installed

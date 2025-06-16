@@ -1,8 +1,8 @@
 return {
   "saghen/blink.cmp",
   dependencies = {
-    "Kaiser-Yang/blink-cmp-avante",
     "brenoprata10/nvim-highlight-colors",
+    "Kaiser-Yang/blink-cmp-avante",
   },
 
   opts = {
@@ -61,7 +61,6 @@ return {
       },
     },
     sources = {
-      -- Add 'avante' to the list
       default = { "avante", "lsp", "path", "buffer" },
       providers = {
         avante = {
