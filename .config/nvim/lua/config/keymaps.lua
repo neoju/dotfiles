@@ -1,8 +1,5 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+vim.g.mapleader = " "
 
--- For conciseness
 local map = vim.keymap.set
 
 -- Move Lines
@@ -21,18 +18,27 @@ map("i", Ak, "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", Aj, ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", Ak, ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
+
+map('n', '<C-s>', ':write<CR>', { desc = 'Save' })
+map('n', '<leader>qq', ':quitall<CR>', { desc = 'Quit all' })
+map('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format code' })
+
+map('n', '<C-l>', '<CMD>wincmd l<CR>')
+map('n', '<C-h>', '<CMD>wincmd h<CR>')
+
 -- Set a custom keymap to update the window title
 map("n", "<leader>wt", function()
-  -- Prompt for title without blink.cmp interfering
-  local title = vim.fn.input("Enter window title: ")
+	-- Prompt for title without blink.cmp interfering
+	local title = vim.fn.input("Enter window title: ")
 
-  -- Set the title, replacing spaces with hyphens
-  if title and title ~= "" then
-    vim.cmd("set titlestring=" .. title:gsub("%s+", "-"))
-    vim.cmd("set title")
-  end
+	-- Set the title, replacing spaces with hyphens
+	if title and title ~= "" then
+		vim.cmd("set titlestring=" .. title:gsub("%s+", "-"))
+		vim.cmd("set title")
+	end
 end, { desc = "Set Window Title" })
 
--- Key map to open codeium chat
--- Prefix 'a' for AI
-map("n", "<leader>ac", "<cmd>Codeium Chat<CR>", { desc = "Open Codeium Chat" })
+vim.keymap.set('n', 'gK', function()
+	local new_config = not vim.diagnostic.config().virtual_lines
+	vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })

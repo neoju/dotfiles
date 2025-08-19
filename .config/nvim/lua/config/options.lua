@@ -1,6 +1,12 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+local opt = vim.opt
 
-vim.opt.laststatus = 3
-vim.opt.termguicolors = true
+vim.g.maplocalleader = "\\"
+
+opt.number = true
+opt.relativenumber = true
+opt.wrap = false
+opt.tabstop = 4
+opt.swapfile = false
+opt.clipboard = "unnamedplus"
+opt.foldmethod = "expr"
+opt.foldlevel = 99

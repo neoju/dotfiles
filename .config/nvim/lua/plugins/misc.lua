@@ -1,29 +1,26 @@
-return {
-  {
-    "brenoprata10/nvim-highlight-colors",
-    opts = {
-      render = "virtual",
-      virtual_symbol = "",
-    },
-  },
+vim.pack.add({
+	{ src = "https://github.com/echasnovski/mini.surround",    version = "stable" },
+	{ src = "https://github.com/echasnovski/mini.icons",       version = "stable" },
+	{ src = "https://github.com/echasnovski/mini.statusline",  version = "stable" },
+	{ src = "https://github.com/echasnovski/mini.notify",      version = "stable" },
+	{ src = "https://github.com/echasnovski/mini.pairs",       version = "stable" },
+	{ src = "https://github.com/echasnovski/mini.hipatterns",  version = "stable" },
+	{ src = "https://github.com/echasnovski/mini.indentscope", version = "stable" },
+	{ src = "https://github.com/echasnovski/mini.bracketed",   version = "stable" },
+	"https://github.com/karb94/neoscroll.nvim",
+	"https://github.com/gbprod/cutlass.nvim",
+	"https://github.com/folke/todo-comments.nvim"
+})
 
-  {
-    -- Decorate scrollbar.
-    "lewis6991/satellite.nvim",
-    opts = {},
-  },
-  {
-    -- Smooth scrolling for any movement command.
-    "declancm/cinnamon.nvim",
-    version = "*", -- use latest release
-    opts = {},
-    enabled = false,
-  },
-  {
-    -- Plugin that adds a 'cut' operation separate from 'delete'.
-    "gbprod/cutlass.nvim",
-    opts = {
-      cut_key = "x",
-    },
-  },
-}
+require('mini.surround').setup()
+require('mini.icons').setup()
+require('mini.statusline').setup()
+require('mini.notify').setup()
+require('mini.pairs').setup()
+require('mini.hipatterns').setup()
+require('mini.indentscope').setup()
+require('mini.bracketed').setup()
+require('todo-comments').setup()
+
+require('neoscroll').setup({ mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>' } })
+require('cutlass').setup({ cut_key = 'x' })

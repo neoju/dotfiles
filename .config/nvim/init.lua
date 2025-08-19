@@ -1,2 +1,22 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+require('config.autocmds')
+require('config.options')
+require('config.keymaps')
+
+require('plugins.misc')
+require('plugins.copilot')
+require('plugins.blink')
+
+require('plugins.barbar')
+require('plugins.lsp')
+require('plugins.treesitter')
+require('plugins.tokyonight')
+require('plugins.gitsigns')
+require('plugins.logsitter')
+require('plugins.lazygit')
+require('plugins.neotree')
+require('plugins.fzflua')
+require('plugins.grup-far')
+
+-- require('plugins.mini-pick')
+require('plugins.mini-clue')
+require('plugins.mini-starter')

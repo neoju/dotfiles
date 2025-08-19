@@ -1,82 +1,81 @@
-return {
-  "saghen/blink.cmp",
-  dependencies = {
-    "brenoprata10/nvim-highlight-colors",
-    "Kaiser-Yang/blink-cmp-avante",
-  },
-
-  opts = {
-    completion = {
-      accept = {
-        auto_brackets = {
-          enabled = true,
-        },
-      },
-
-      menu = {
-        draw = {
-          components = {
-            -- customize the drawing of kind icons
-            kind_icon = {
-              text = function(ctx)
-                -- default kind icon
-                local icon = ctx.kind_icon
-                -- if LSP source, check for color derived from documentation
-                if ctx.item.source_name == "LSP" then
-                  local color_item =
-                    require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
-                  if color_item and color_item.abbr ~= "" then
-                    icon = color_item.abbr
-                  end
-                end
-                return icon .. ctx.icon_gap
-              end,
-              highlight = function(ctx)
-                -- default highlight group
-                local highlight = "BlinkCmpKind" .. ctx.kind
-                -- if LSP source, check for color derived from documentation
-                if ctx.item.source_name == "LSP" then
-                  local color_item =
-                    require("nvim-highlight-colors").format(ctx.item.documentation, { kind = ctx.kind })
-                  if color_item and color_item.abbr_hl_group then
-                    highlight = color_item.abbr_hl_group
-                  end
-                end
-                return highlight
-              end,
-            },
-          },
-        },
-
-        auto_show = function(ctx)
-          if ctx.mope == "cmdline" then
-            return false
-          end
-
-          return not vim.tbl_contains({ "AvantePromptInput" }, vim.bo.filetype)
-            and vim.bo.buftype ~= "prompt"
-            and vim.bo.buftype ~= "nofile"
-            and vim.b.completion ~= false
-        end,
-      },
-    },
-    sources = {
-      default = { "avante", "lsp", "path", "buffer" },
-      providers = {
-        avante = {
-          module = "blink-cmp-avante",
-          name = "Avante",
-          opts = {
-            -- options for blink-cmp-avante
-          },
-        },
-      },
-    },
-
-    keymap = {
-      preset = "enter",
-      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-    },
-  },
+vim.pack.add {
+	{ src = "https://github.com/Saghen/blink.cmp" }
 }
+
+local blink = require('blink.cmp')
+local mini_icons = require('mini.icons')
+
+blink.setup({
+	fuzzy = {
+		prebuilt_binaries = {
+			force_version = 'v1.6.0'
+		}
+	},
+
+	completion = {
+		accept = {
+			auto_brackets = {
+				enabled = true,
+			},
+		},
+
+		menu = {
+			draw = {
+				components = {
+					kind_icon = {
+						text = function(ctx)
+							-- copilot does not have an icon in mini.icons
+							if (ctx.kind == "Copilot") then
+								return ""
+							end
+
+							local kind_icon, _, _ = mini_icons.get('lsp', ctx.kind)
+							return kind_icon
+						end,
+						-- (optional) use highlights from mini.icons
+						highlight = function(ctx)
+							local _, hl, _ = mini_icons.get('lsp', ctx.kind)
+							return hl
+						end,
+					},
+					kind = {
+						-- (optional) use highlights from mini.icons
+						highlight = function(ctx)
+							local _, hl, _ = mini_icons.get('lsp', ctx.kind)
+							return hl
+						end,
+					}
+				}
+			},
+
+			auto_show = function(ctx)
+				if ctx.mode == "cmdline" then
+					return false
+				end
+
+				return not vim.tbl_contains({ "AvantePromptInput" }, vim.bo.filetype)
+				    and vim.bo.buftype ~= "prompt"
+				    and vim.bo.buftype ~= "nofile"
+				    and vim.b.completion ~= false
+			end,
+		},
+	},
+
+	sources = {
+		default = { "lsp", "path", "snippets", "buffer", "copilot" },
+		providers = {
+			copilot = {
+				name = "copilot",
+				module = "blink-cmp-copilot",
+				score_offset = 100,
+				async = true,
+			},
+		},
+	},
+
+	keymap = {
+		preset = "enter",
+		["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+		["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+	},
+})
