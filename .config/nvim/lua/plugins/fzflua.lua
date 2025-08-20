@@ -19,6 +19,7 @@ fzf_lua.setup({
 	},
 })
 
+map('n', '<leader><Space>', '<CMD>FzfLua files<CR>', { desc = 'Find files' })
 map('n', '<leader>ff', '<CMD>FzfLua files<CR>', { desc = 'Find files' })
 map('n', '<leader>fs', '<CMD>FzfLua live_grep<CR>', { desc = 'Find string (live_grep)' })
 map('n', '<leader>fr', '<CMD>FzfLua live_grep resume=true<CR>', { desc = 'Find string (live_grep) - resume' })
