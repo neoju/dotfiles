@@ -10,3 +10,7 @@ opt.swapfile = false
 opt.clipboard = "unnamedplus"
 opt.foldmethod = "expr"
 opt.foldlevel = 99
+
+vim.diagnostic.config {
+	virtual_lines = true
+}

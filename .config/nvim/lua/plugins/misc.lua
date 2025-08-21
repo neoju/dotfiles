@@ -22,5 +22,5 @@ require('mini.indentscope').setup()
 require('mini.bracketed').setup()
 require('todo-comments').setup()
 
-require('neoscroll').setup({ mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>' } })
+-- require('neoscroll').setup({ mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>' } })
 require('cutlass').setup({ cut_key = 'x' })

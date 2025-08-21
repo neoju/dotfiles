@@ -9,8 +9,15 @@ require('mason').setup()
 require("mason-lspconfig").setup {
 	ensure_installed = {
 		"lua_ls",
+		"gopls",
+
+		-- web development
+		"svelte",
 		"vue_ls",
-		"ts_ls"
+		"ts_ls",
+		"html",
+		"tailwindcss",
+		"cssls",
 	},
 }
 
