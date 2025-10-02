@@ -1,0 +1,29 @@
+{
+  "layer": "top",
+  "position": "top",
+  "reload_style_on_change": true,
+  "margin-top": 3,
+  "margin-left": 15,
+  "margin-right": 15,
+  "modules-left": [
+    "custom/icon",
+    "hyprland/workspaces",
+    "custom/init-workspace",
+  ],
+  "modules-center": ["temperature", "cpu", "memory"],
+  "modules-right": [
+    "custom/screenrecord",
+    "custom/picker",
+
+    "wireplumber#sink",
+    "wireplumber#source",
+
+    "bluetooth",
+    "network",
+    "custom/notification",
+    "custom/keyboard-layout",
+    "clock",
+    "custom/power",
+  ],
+  "include": ["~/.config/waybar/modules.jsonc"],
+}
