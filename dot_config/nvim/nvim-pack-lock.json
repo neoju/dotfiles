@@ -1,0 +1,12 @@
+{
+  "plugins": {
+    "logsitter.nvim": {
+      "rev": "95e2b43",
+      "src": "https://github.com/gaelph/logsitter.nvim"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    }
+  }
+}
