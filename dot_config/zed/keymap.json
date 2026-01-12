@@ -1,0 +1,46 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-/": "terminal_panel::Toggle",
+      "ctrl-s": "workspace::Save",
+    },
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "space e": "project_panel::ToggleFocus",
+      "space space": "file_finder::Toggle",
+      "space s g": "workspace::NewSearch",
+      "space c a": "editor::ToggleCodeActions",
+      "space r n": "editor::Rename",
+
+      // Back to the last buffer
+      "space b b": ["workspace::SendKeystrokes", "ctrl-tab enter"],
+
+      // Open lazygit
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "start lazygit", "reveal_target": "center" },
+      ],
+      "space g f": [
+        "task::Spawn",
+        { "task_name": "start lazygit file log", "reveal_target": "center" },
+      ],
+    },
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "d": "project_panel::Delete",
+    },
+  },
+]
