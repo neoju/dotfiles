@@ -9,8 +9,8 @@
 {
   "terminal": {
     "shell": {
-      "program": "sh"
-    }
+      "program": "zsh",
+    },
   },
   "project_panel": {
     "hide_hidden": true,
