@@ -14,15 +14,20 @@
     },
   },
   {
-    "context": "vim_mode == normal && !menu",
+    "context": "Workspace && !Terminal",
     "bindings": {
       "space e": "project_panel::ToggleFocus",
       "space space": "file_finder::Toggle",
       "space s g": "workspace::NewSearch",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
       "space c a": "editor::ToggleCodeActions",
       "space r n": "editor::Rename",
-
       // Back to the last buffer
+
       "space b b": ["workspace::SendKeystrokes", "ctrl-tab enter"],
 
       // Open lazygit
@@ -37,10 +42,28 @@
     },
   },
   {
+    "context": "Editor && (vim_mode == visual || vim_mode == normal)",
+    "bindings": {
+      "alt-k": "editor::MoveLineUp",
+      "alt-j": "editor::MoveLineDown",
+    },
+  },
+  {
     "context": "(ProjectPanel && not_editing)",
     "bindings": {
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
+      "H": "project_panel::ToggleHideHidden",
+      "G": "project_panel::ToggleHideGitIgnore",
+      "Z": "project_panel::CollapseSelectedEntry",
+      "z": "project_panel::ExpandSelectedEntry",
+    },
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrevious",
     },
   },
 ]

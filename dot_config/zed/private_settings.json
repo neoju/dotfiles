@@ -7,31 +7,34 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "hide_hidden": true,
+  },
   "buffer_font_family": "CaskaydiaMono Nerd Font Mono",
   "ui_font_family": ".ZedSans",
   "buffer_line_height": "comfortable",
   "buffer_font_weight": 400.0,
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "agent": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "claude-sonnet-4.5",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "icon_theme": {
     "mode": "system",
     "light": "Zed (Default)",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "session": {
-    "trust_all_worktrees": true
+    "trust_all_worktrees": true,
   },
   "vim_mode": true,
   "ui_font_size": 16.0,
@@ -39,6 +42,17 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Mocha",
+    "dark": "Tokyo Night",
   },
+
+  // Disable cursor blink
+  "cursor_blink": false,
+  // Use relative line numbers
+  "relative_line_numbers": "enabled",
+  // Hide the scroll bar
+  "scrollbar": { "show": "never" },
+  // Prevent the buffer from scrolling beyond the last line
+  "scroll_beyond_last_line": "off",
+  // Allow the cursor to reach the edges of the screen
+  "vertical_scroll_margin": 0,
 }
