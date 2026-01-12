@@ -1,7 +1,7 @@
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
 #!/bin/sh
 ############ Arch ############
-sudo pacman -S --noconfirm ripgrep zsh lazygit nodejs
+sudo pacman -S --noconfirm ripgrep zsh lazygit nodejs ttf-cascadia-mono-nerd
 
 # Install yay if not already installed (for AUR packages)
 if ! command -v yay &> /dev/null; then
@@ -44,6 +44,10 @@ fi
 #!/bin/sh
 ############ macOS ############
 brew install ripgrep zsh lazygit node
+
+# Install CaskaydiaMono Nerd Font
+brew tap homebrew/cask-fonts
+brew install --cask font-caskaydia-mono-nerd-font
 
 # Install cask applications
 brew install --cask zed obsidian ghostty
