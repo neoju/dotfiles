@@ -14,7 +14,7 @@
     },
   },
   {
-    "context": "Workspace && !Terminal",
+    "context": "Workspace && !Terminal && not_editing",
     "bindings": {
       "space e": "project_panel::ToggleFocus",
       "space space": "file_finder::Toggle",
