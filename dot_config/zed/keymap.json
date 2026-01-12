@@ -14,7 +14,7 @@
     },
   },
   {
-    "context": "Workspace && !Terminal && not_editing",
+    "context": "!Terminal && vim_mode == normal",
     "bindings": {
       "space e": "project_panel::ToggleFocus",
       "space space": "file_finder::Toggle",
