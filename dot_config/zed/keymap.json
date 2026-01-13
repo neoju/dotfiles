@@ -14,6 +14,20 @@
     },
   },
   {
+    "context": "ProjectPanel || (!Terminal && vim_mode == normal)",
+    "bindings": {
+      // Open lazygit
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "start lazygit", "reveal_target": "center" },
+      ],
+      "space g f": [
+        "task::Spawn",
+        { "task_name": "start lazygit file log", "reveal_target": "center" },
+      ],
+    },
+  },
+  {
     "context": "!Terminal && vim_mode == normal",
     "bindings": {
       "space e": "project_panel::ToggleFocus",
@@ -29,16 +43,6 @@
       // Back to the last buffer
 
       "space b b": ["workspace::SendKeystrokes", "ctrl-tab enter"],
-
-      // Open lazygit
-      "space g g": [
-        "task::Spawn",
-        { "task_name": "start lazygit", "reveal_target": "center" },
-      ],
-      "space g f": [
-        "task::Spawn",
-        { "task_name": "start lazygit file log", "reveal_target": "center" },
-      ],
     },
   },
   {
